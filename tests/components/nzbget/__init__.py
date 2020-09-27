@@ -16,6 +16,7 @@ from homeassistant.const import (
 from tests.async_mock import patch
 from tests.common import MockConfigEntry
 
+
 ENTRY_CONFIG = {
     CONF_HOST: "10.10.10.30",
     CONF_NAME: "NZBGetTest",
@@ -45,39 +46,16 @@ YAML_CONFIG = {
     CONF_USERNAME: "",
 }
 
-MOCK_VERSION = "21.0"
-
-MOCK_STATUS = {
-    "ArticleCacheMB": 64,
-    "AverageDownloadRate": 1250000,
-    "DownloadPaused": False,
-    "DownloadRate": 2500000,
-    "DownloadedSizeMB": 256,
-    "FreeDiskSpaceMB": 1024,
-    "PostJobCount": 2,
-    "PostPaused": False,
-    "RemainingSizeMB": 512,
-    "UpTimeSec": 600,
-}
-
-MOCK_HISTORY = [
-    {"Name": "Downloaded Item XYZ", "Category": "", "Status": "SUCCESS"},
-    {"Name": "Failed Item ABC", "Category": "", "Status": "FAILURE"},
-]
-
-
 async def init_integration(
     hass,
     *,
-    status: dict = MOCK_STATUS,
-    history: dict = MOCK_HISTORY,
-    version: str = MOCK_VERSION,
+    skip_entry_setup: bool = False,
 ) -> MockConfigEntry:
     """Set up the NZBGet integration in Home Assistant."""
     entry = MockConfigEntry(domain=DOMAIN, data=ENTRY_CONFIG)
     entry.add_to_hass(hass)
 
-    with _patch_version(version), _patch_status(status), _patch_history(history):
+    if not skip_entry_setup:
         await hass.config_entries.async_setup(entry.entry_id)
         await hass.async_block_till_done()
 
