@@ -1,8 +1,9 @@
 """Support for NZBGet switches."""
-from typing import Callable, List, Optional
+from typing import Callable, List
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_NAME
+from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.typing import HomeAssistantType
 
 from . import NZBGetEntity
