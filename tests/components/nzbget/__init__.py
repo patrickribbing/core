@@ -50,12 +50,12 @@ MOCK_VERSION = "21.0"
 MOCK_STATUS = {
     "ArticleCacheMB": 64,
     "AverageDownloadRate": 1250000,
-    "DownloadPaused": 4,
+    "DownloadPaused": False,
     "DownloadRate": 2500000,
     "DownloadedSizeMB": 256,
     "FreeDiskSpaceMB": 1024,
     "PostJobCount": 2,
-    "PostPaused": 4,
+    "PostPaused": False,
     "RemainingSizeMB": 512,
     "UpTimeSec": 600,
 }
