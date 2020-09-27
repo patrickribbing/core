@@ -36,7 +36,7 @@ async def test_download_switch_services(hass) -> None:
     with patch("homeassistant.components.nzbget.coordinator.NZBGetAPI.pausedownload") as pause_mock:
         await hass.services.async_call(
             SWITCH_DOMAIN,
-            SERVICE_TURN_ON,
+            SERVICE_TURN_OFF,
             {ATTR_ENTITY_ID: entity_id},
             blocking=True,
         )
@@ -45,7 +45,7 @@ async def test_download_switch_services(hass) -> None:
     with patch("homeassistant.components.nzbget.coordinator.NZBGetAPI.resumedownload") as resume_mock:
         await hass.services.async_call(
             SWITCH_DOMAIN,
-            SERVICE_TURN_OFF,
+            SERVICE_TURN_ON,
             {ATTR_ENTITY_ID: entity_id},
             blocking=True,
         )
