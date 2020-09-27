@@ -14,7 +14,7 @@ from . import init_integration
 from tests.async_mock import patch
 
 
-async def test_sensors(hass) -> None:
+async def test_sensors(hass, nzbget_api) -> None:
     """Test the creation and values of the sensors."""
     now = dt_util.utcnow().replace(microsecond=0)
     with patch("homeassistant.util.dt.utcnow", return_value=now):
