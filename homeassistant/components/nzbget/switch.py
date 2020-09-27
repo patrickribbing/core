@@ -58,13 +58,7 @@ class NZBGetDownloadSwitch(NZBGetEntity, Entity):
     @property
     def is_on(self):
         """Return the state of the switch."""
-        value = self.coordinator.data["status"].get("DownloadPaused")
-
-        if value is None:
-            v12_value = self.coordinator.data["status"].get("ServerPaused", False)
-            value = self.coordinator.data["status"].get("Download2Paused", v12_value)
-
-        return value
+        return self.coordinator.data["status"].get("DownloadPaused", False)
 
     def turn_on(self, **kwargs) -> None:
         """Set downloads to enabled."""
