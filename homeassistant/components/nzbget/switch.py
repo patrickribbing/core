@@ -3,7 +3,6 @@ from typing import Callable, List, Optional
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_NAME
-from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.typing import HomeAssistantType
 
 from . import NZBGetEntity
@@ -32,7 +31,7 @@ async def async_setup_entry(
     async_add_entities(switches)
 
 
-class NZBGetDownloadSwitch(NZBGetEntity, Entity):
+class NZBGetDownloadSwitch(NZBGetEntity):
     """Representation of a NZBGet download switch."""
 
     def __init__(
