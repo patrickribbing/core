@@ -1,5 +1,11 @@
 """Test the NZBGet switches."""
-From homeassistant.const import STATE_OFF
+from homeassistant.components.switch.const import DOMAIN as SWITCH_DOMAIN
+from homeassistant.const import (
+    ATTR_ENTITY_ID,
+    SERVICE_TURN_ON,
+    SERVICE_TURN_OFF,
+    STATE_OFF,
+)
 
 from . import init_integration
 
@@ -19,3 +25,28 @@ async def test_download_switch(hass) -> None:
     state = hass.states.get("switch.nzbgettest_download")
     assert state
     assert state.state == STATE_OFF
+
+
+async def test_download_switch_services(hass) -> None:
+    """Test download switch services."""
+    await init_integration(hass)
+
+    entity_id = "switch.nzbgettest_download"
+
+    with patch("homeassistant.components.nzbget.coordinator.NZBGetAPI.pausedownload") as pause_mock:
+        await hass.services.async_call(
+            SWITCH_DOMAIN,
+            SERVICE_TURN_ON,
+            {ATTR_ENTITY_ID: entity_id},
+            blocking=True,
+        )
+        pause_mock.assert_called_once()
+
+    with patch("homeassistant.components.nzbget.coordinator.NZBGetAPI.resumedownload") as resume_mock:
+        await hass.services.async_call(
+            SWITCH_DOMAIN,
+            SERVICE_TURN_OFF,
+            {ATTR_ENTITY_ID: entity_id},
+            blocking=True,
+        )
+        resume_mock.assert_called_once()
