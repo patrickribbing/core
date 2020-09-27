@@ -3,25 +3,7 @@ from pytest import fixture
 
 from tests.async_mock import patch
 
-MOCK_VERSION = "21.0"
-
-MOCK_STATUS = {
-    "ArticleCacheMB": 64,
-    "AverageDownloadRate": 1250000,
-    "DownloadPaused": False,
-    "DownloadRate": 2500000,
-    "DownloadedSizeMB": 256,
-    "FreeDiskSpaceMB": 1024,
-    "PostJobCount": 2,
-    "PostPaused": False,
-    "RemainingSizeMB": 512,
-    "UpTimeSec": 600,
-}
-
-MOCK_HISTORY = [
-    {"Name": "Downloaded Item XYZ", "Category": "", "Status": "SUCCESS"},
-    {"Name": "Failed Item ABC", "Category": "", "Status": "FAILURE"},
-]
+from . Import MOCK_HISTORY, MOCK_STATUS, MOCK_VERSION
 
 
 @fixture
