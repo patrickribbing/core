@@ -68,10 +68,10 @@ class NZBGetDownloadSwitch(NZBGetEntity, Entity):
 
     def turn_on(self, **kwargs) -> None:
         """Set downloads to enabled."""
-        coordinator.nzbget.resumedownload()
+        self.coordinator.nzbget.resumedownload()
         self.update()
 
     def turn_off(self, **kwargs) -> None:
         """Set downloads to paused."""
-        coordinator.nzbget.pausedownload()
+        self.coordinator.nzbget.pausedownload()
         self.update()
